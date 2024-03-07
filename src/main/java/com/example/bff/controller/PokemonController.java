@@ -1,7 +1,7 @@
 package com.example.bff.controller;
 
-import com.example.bff.dto.PokemonDto;
-import com.example.bff.service.PokemonService;
+import com.example.bff.service.PokemonServiceImp;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,18 +13,10 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class PokemonController {
-
-
-    private final PokemonService pokemonService;
-
-    @GetMapping("/pokemon")
-    public ResponseEntity<List<PokemonDto>> getPokemons() {
-        return ResponseEntity.ok(pokemonService.getPokemons());
+    private final PokemonServiceImp pokemonService;
+    @GetMapping("/{requestPath}")
+    public ResponseEntity<String> consumePokemonApi(@PathVariable String requestPath) {
+        return ResponseEntity.ok(pokemonService.consumePokemonApi(requestPath));
     }
 
-    @GetMapping("/pokemon/{pokemonName}")
-    public ResponseEntity<PokemonDto> getPokemonByName(@PathVariable String pokemonName) {
-        PokemonDto pokemon = pokemonService.getPokemonByName(pokemonName);
-        return ResponseEntity.ok(pokemon);
-    }
 }
