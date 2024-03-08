@@ -11,9 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PokemonController {
     private final PokemonServiceImp pokemonService;
+
     @GetMapping("/{requestPath}")
     public ResponseEntity<String> consumePokemonApi(@PathVariable String requestPath) {
         return ResponseEntity.ok(pokemonService.consumePokemonApi(requestPath));
+    }
+    @GetMapping("/pokemon/{requestPath}")
+    public ResponseEntity<String> consumePokemonApibyPokemon(@PathVariable String requestPath) {
+        return ResponseEntity.ok(pokemonService.consumePokemonApibyPokemon(requestPath));
     }
 
 }
