@@ -21,14 +21,43 @@ public class PokemonServiceImp implements PokemonService{
                 .bodyToMono(String.class)
                 .block();
     }
+
     @Override
-    public String consumePokemonApibyPokemon(String requestPath) {
+    public String consumePokemonApiSolo(String requestPath) {
         WebClient.Builder builder = WebClient.builder();
-        return builder.build()
+        String response = builder.build()
                 .get()
                 .uri(basePath+"/pokemon/"+requestPath)
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
+        System.out.println(basePath+"/pokemon/"+requestPath);
+        return response;
+    }
+
+    @Override
+    public String consumePokemonApiSoloSpecies(String requestPath) {
+        WebClient.Builder builder = WebClient.builder();
+        String response = builder.build()
+                .get()
+                .uri(basePath+"/pokemon-species/"+requestPath)
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+        System.out.println(basePath+"/pokemon-species/"+requestPath);
+        return response;
+    }
+
+    @Override
+    public String consumePokemonApiSearch(String requestPath) {
+        WebClient.Builder builder = WebClient.builder();
+        String response = builder.build()
+                .get()
+                .uri(basePath+"/"+requestPath+"?limit=10000&offset=0")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+        System.out.println(basePath+"/pokemon/"+requestPath);
+        return response;
     }
 }

@@ -16,9 +16,19 @@ public class PokemonController {
     public ResponseEntity<String> consumePokemonApi(@PathVariable String requestPath) {
         return ResponseEntity.ok(pokemonService.consumePokemonApi(requestPath));
     }
+
     @GetMapping("/pokemon/{requestPath}")
-    public ResponseEntity<String> consumePokemonApibyPokemon(@PathVariable String requestPath) {
-        return ResponseEntity.ok(pokemonService.consumePokemonApibyPokemon(requestPath));
+    public ResponseEntity<String> consumePokemonApiSoloPokemon(@PathVariable String requestPath) {
+        return ResponseEntity.ok(pokemonService.consumePokemonApiSolo(requestPath));
+    }
+    @GetMapping("/pokemon-search/{requestPath}")
+    public ResponseEntity<String> consumePokemonApiSearch(@PathVariable String requestPath) {
+        return ResponseEntity.ok(pokemonService.consumePokemonApiSearch(requestPath));
+    }
+
+    @GetMapping("/pokemon-species/{requestPath}")
+    public ResponseEntity<String> consumePokemonApiSoloPokemonSpecies(@PathVariable String requestPath) {
+        return ResponseEntity.ok(pokemonService.consumePokemonApiSoloSpecies(requestPath));
     }
 
 }
